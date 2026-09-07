@@ -51,6 +51,7 @@
     display:flex;
     align-items:center;
     justify-content:center;
+    overflow:hidden;
     font-family:'Cormorant Garamond', serif;
     font-style:italic;
     font-size:38px;
@@ -58,6 +59,12 @@
     opacity:0;
     transform:scale(0.85);
     animation:sealIn 900ms ease-out 150ms forwards;
+  }
+
+  .seal img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
   }
 
   @keyframes sealIn{
@@ -216,7 +223,9 @@
 
 <div class="page">
 
-  <div class="seal">J</div>
+  <div class="seal">
+    <img src="foto.jpeg" alt="Foto de Jesús Montero">
+  </div>
   <p class="eyebrow">Jesús Montero</p>
   <h1>Invitaciones digitales</h1>
   <p class="tagline">Diseño experiencias web a la medida de cada celebración — bodas, XV años, baby showers, cumpleaños y eventos corporativos.</p>
