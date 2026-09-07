@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jesús Montero | Invitaciones Digitales</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ivory:#F5EFE2;
+    --ivory-deep:#EEE5D2;
+    --ink:#2B2118;
+    --ink-soft:#5B4E3F;
+    --burgundy:#7A2E38;
+    --burgundy-deep:#5E212A;
+    --gold:#AD8A4E;
+    --line:rgba(43,33,24,0.18);
+  }
+
+  *{ box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    margin:0;
+    background:var(--ivory);
+    background-image:
+      radial-gradient(ellipse at top, var(--ivory-deep) 0%, var(--ivory) 55%);
+    color:var(--ink);
+    font-family:'Jost', sans-serif;
+    font-weight:300;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .page{
+    max-width:600px;
+    margin:0 auto;
+    padding:72px 28px 56px;
+  }
+
+  /* ---------- Hero ---------- */
+
+  .seal{
+    width:88px;
+    height:88px;
+    margin:0 auto 28px;
+    border:1px solid var(--gold);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:38px;
+    color:var(--gold);
+    opacity:0;
+    transform:scale(0.85);
+    animation:sealIn 900ms ease-out 150ms forwards;
+  }
+
+  @keyframes sealIn{
+    to{ opacity:1; transform:scale(1); }
+  }
+
+  .eyebrow{
+    text-align:center;
+    font-size:13px;
+    letter-spacing:0.04em;
+    color:var(--ink-soft);
+    margin:0 0 6px;
+  }
+
+  h1{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:500;
+    font-size:clamp(34px, 7vw, 46px);
+    line-height:1.1;
+    text-align:center;
+    margin:0 0 14px;
+    color:var(--ink);
+  }
+
+  .tagline{
+    text-align:center;
+    font-size:16px;
+    line-height:1.6;
+    color:var(--ink-soft);
+    max-width:420px;
+    margin:0 auto 44px;
+  }
+
+  /* ---------- ornamental divider ---------- */
+
+  .flourish{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin:44px 0;
+  }
+  .flourish::before, .flourish::after{
+    content:'';
+    flex:1;
+    height:1px;
+    background:var(--line);
+  }
+  .flourish span{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:15px;
+    color:var(--gold);
+    white-space:nowrap;
+  }
+
+  /* ---------- servicios ---------- */
+
+  .servicio{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:16px;
+    padding:20px 0;
+    border-bottom:1px solid var(--line);
+    text-decoration:none;
+    color:inherit;
+  }
+  .servicio:first-of-type{ border-top:1px solid var(--line); }
+
+  .servicio-nombre{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:500;
+    font-size:23px;
+    color:var(--ink);
+  }
+
+  .servicio-desc{
+    font-size:13.5px;
+    color:var(--ink-soft);
+    text-align:right;
+    max-width:190px;
+    line-height:1.5;
+  }
+
+  .servicio:hover .servicio-nombre{
+    color:var(--burgundy);
+    transition:color 200ms ease;
+  }
+
+  /* ---------- sobre nosotros ---------- */
+
+  .sobre{
+    font-size:15px;
+    line-height:1.75;
+    color:var(--ink-soft);
+    text-align:center;
+    max-width:460px;
+    margin:0 auto;
+  }
+
+  /* ---------- contacto ---------- */
+
+  .contacto{
+    text-align:center;
+  }
+
+  .btn{
+    display:inline-block;
+    font-family:'Jost', sans-serif;
+    font-weight:500;
+    font-size:15px;
+    letter-spacing:0.01em;
+    color:var(--ivory);
+    background:var(--burgundy);
+    padding:15px 40px;
+    border-radius:2px;
+    text-decoration:none;
+    transition:background 200ms ease;
+  }
+  .btn:hover{ background:var(--burgundy-deep); }
+
+  .redes{
+    margin-top:26px;
+    display:flex;
+    justify-content:center;
+    gap:26px;
+    font-size:14px;
+  }
+  .redes a{
+    color:var(--ink-soft);
+    text-decoration:none;
+    border-bottom:1px solid var(--line);
+    padding-bottom:2px;
+  }
+  .redes a:hover{ color:var(--burgundy); border-color:var(--burgundy); }
+
+  footer{
+    margin-top:60px;
+    text-align:center;
+    font-size:12px;
+    color:var(--ink-soft);
+    opacity:0.7;
+  }
+
+  @media (max-width:420px){
+    .servicio{ flex-direction:column; gap:4px; }
+    .servicio-desc{ text-align:left; max-width:none; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .seal{ animation:none; opacity:1; transform:none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="seal">J</div>
+  <p class="eyebrow">Jesús Montero</p>
+  <h1>Invitaciones digitales</h1>
+  <p class="tagline">Diseño experiencias web a la medida de cada celebración — bodas, XV años, baby showers, cumpleaños y eventos corporativos.</p>
+
+  <div class="flourish"><span>servicios</span></div>
+
+  <!-- Reemplaza cada href por el enlace real de tu demo o plantilla -->
+  <a class="servicio" href="#" target="_blank" rel="noopener">
+    <span class="servicio-nombre">Bodas</span>
+    <span class="servicio-desc">Cuenta regresiva, RSVP, galería y mapa del evento</span>
+  </a>
+  <a class="servicio" href="#" target="_blank" rel="noopener">
+    <span class="servicio-nombre">XV años</span>
+    <span class="servicio-desc">Invitación animada con música y confirmación de asistencia</span>
+  </a>
+  <a class="servicio" href="#" target="_blank" rel="noopener">
+    <span class="servicio-nombre">Baby shower</span>
+    <span class="servicio-desc">Diseño tierno con lista de regalos y ubicación</span>
+  </a>
+  <a class="servicio" href="#" target="_blank" rel="noopener">
+    <span class="servicio-nombre">Cumpleaños infantil</span>
+    <span class="servicio-desc">Temática a elegir, colorida e interactiva</span>
+  </a>
+  <a class="servicio" href="#" target="_blank" rel="noopener">
+    <span class="servicio-nombre">Eventos corporativos</span>
+    <span class="servicio-desc">Registro de invitados y agenda del evento</span>
+  </a>
+
+  <div class="flourish"><span>sobre nosotros</span></div>
+
+  <p class="sobre">Nos dedicamos a crear invitaciones digitales que reemplazan al papel sin perder esa sensación especial de recibir algo hecho solo para ti.</p>
+
+  <div class="flourish"><span>contacto</span></div>
+
+  <div class="contacto">
+    <!-- Reemplaza el número por tu WhatsApp con lada de país, sin signos -->
+    <a class="btn" href="https://wa.me/521XXXXXXXXXX?text=Hola%20Jes%C3%BAs%2C%20me%20interesa%20una%20invitaci%C3%B3n%20digital" target="_blank" rel="noopener">Cotizar mi invitación</a>
+    <div class="redes">
+      <a href="https://instagram.com/jesusmonttt" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://github.com/juanmonteroglez-commits" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+
+  <footer>Hecho a mano, invitación por invitación.</footer>
+
+</div>
+
+</body>
+</html>
