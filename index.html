@@ -224,18 +224,52 @@
   }
 
   .invitacion-card{
+    display:block;
     background:rgba(255,255,255,0.32);
     border:1px solid var(--line);
     padding:10px;
     box-shadow:0 12px 24px rgba(43,33,24,0.04);
+    color:inherit;
+    text-decoration:none;
   }
 
   .invitacion-preview{
+    position:relative;
     width:100%;
     height:220px;
     border:none;
     background:linear-gradient(135deg, #f9f4ed, #efe3cb);
-    display:block;
+    display:flex;
+    align-items:flex-end;
+    justify-content:flex-end;
+    padding:16px;
+    overflow:hidden;
+  }
+
+  .invitacion-preview::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:linear-gradient(135deg, rgba(122,46,56,0.12), rgba(173,138,78,0.08));
+  }
+
+  .invitacion-preview span{
+    position:relative;
+    z-index:1;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:80px;
+    height:34px;
+    padding:0 16px;
+    border-radius:999px;
+    background:rgba(255,255,255,0.7);
+    border:1px solid rgba(43,33,24,0.08);
+    font-size:12px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--ink);
+    backdrop-filter:blur(2px);
   }
 
   .invitacion-meta{
@@ -252,14 +286,14 @@
     color:var(--ink);
   }
 
-  .invitacion-meta a{
+  .invitacion-meta em{
+    font-style:normal;
     color:var(--burgundy);
-    text-decoration:none;
     font-size:13px;
     border-bottom:1px solid transparent;
   }
 
-  .invitacion-meta a:hover{
+  .invitacion-card:hover .invitacion-meta em{
     border-color:var(--burgundy);
   }
 
@@ -339,29 +373,35 @@
     </div>
 
     <div class="invitaciones-grid">
-      <article class="invitacion-card">
-        <iframe class="invitacion-preview" src="https://juanmonteroglez-commits.github.io/nuevo-dise-o-invitacion-romina/" title="Invitación de boda" loading="lazy"></iframe>
+      <a class="invitacion-card" href="https://juanmonteroglez-commits.github.io/nuevo-dise-o-invitacion-romina/" target="_blank" rel="noopener">
+        <div class="invitacion-preview" aria-label="Vista previa de la invitación de boda">
+          <span>Abrir</span>
+        </div>
         <div class="invitacion-meta">
           <strong>Boda Fernando & Susana</strong>
-          <a href="https://juanmonteroglez-commits.github.io/nuevo-dise-o-invitacion-romina/" target="_blank" rel="noopener">Ver</a>
+          <em>Ver</em>
         </div>
-      </article>
+      </a>
 
-      <article class="invitacion-card">
-        <iframe class="invitacion-preview" src="https://example.com/invitacion-xv" title="Invitación de XV años" loading="lazy"></iframe>
+      <a class="invitacion-card" href="https://example.com/invitacion-xv" target="_blank" rel="noopener">
+        <div class="invitacion-preview" aria-label="Vista previa de la invitación de XV años">
+          <span>Abrir</span>
+        </div>
         <div class="invitacion-meta">
           <strong>XV años Valeria</strong>
-          <a href="https://example.com/invitacion-xv" target="_blank" rel="noopener">Ver</a>
+          <em>Ver</em>
         </div>
-      </article>
+      </a>
 
-      <article class="invitacion-card">
-        <iframe class="invitacion-preview" src="https://example.com/invitacion-baby-shower" title="Invitación de baby shower" loading="lazy"></iframe>
+      <a class="invitacion-card" href="https://example.com/invitacion-baby-shower" target="_blank" rel="noopener">
+        <div class="invitacion-preview" aria-label="Vista previa de la invitación de baby shower">
+          <span>Abrir</span>
+        </div>
         <div class="invitacion-meta">
           <strong>Baby shower</strong>
-          <a href="https://example.com/invitacion-baby-shower" target="_blank" rel="noopener">Ver</a>
+          <em>Ver</em>
         </div>
-      </article>
+      </a>
     </div>
   </section>
 
