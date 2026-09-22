@@ -2,109 +2,212 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Jesús Montero | Invitaciones Digitales</title>
+<meta name="description" content="Invitaciones digitales a la medida — bodas, XV años, baby showers, cumpleaños y eventos corporativos.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ivory:#F5EFE2;
-    --ivory-deep:#EEE5D2;
+    --ivory:#F7F1E4;
+    --outer:#E3D6BB;
+    --outer-deep:#D8C9A8;
     --ink:#2B2118;
     --ink-soft:#5B4E3F;
     --burgundy:#7A2E38;
     --burgundy-deep:#5E212A;
     --gold:#AD8A4E;
-    --line:rgba(43,33,24,0.18);
+    --gold-soft:rgba(173,138,78,0.35);
+    --line:rgba(43,33,24,0.16);
+    --shadow:rgba(43,33,24,0.10);
   }
 
   *{ box-sizing:border-box; }
-
-  html{ scroll-behavior:smooth; }
+  html{ scroll-behavior:smooth; scroll-padding-top:26px; }
 
   body{
     margin:0;
-    background:var(--ivory);
+    background:var(--outer);
     background-image:
-      radial-gradient(ellipse at top, var(--ivory-deep) 0%, var(--ivory) 55%);
+      radial-gradient(ellipse 90% 60% at 50% -8%, var(--outer-deep) 0%, var(--outer) 55%);
     color:var(--ink);
     font-family:'Jost', sans-serif;
     font-weight:300;
     -webkit-font-smoothing:antialiased;
+    min-height:100vh;
+    padding:36px 16px 64px;
   }
 
-  .page{
-    max-width:600px;
+  /* ---------- tarjeta / lienzo principal ---------- */
+
+  .card{
+    position:relative;
+    max-width:660px;
     margin:0 auto;
-    padding:72px 28px 56px;
+    background:var(--ivory);
+    border:1px solid var(--gold-soft);
+    box-shadow:0 30px 70px -25px var(--shadow), 0 2px 0 var(--gold-soft) inset;
+    overflow:hidden;
   }
 
-  /* ---------- Hero ---------- */
+  .card::before{
+    /* textura de papel muy sutil */
+    content:'';
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    opacity:0.5;
+    mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.16  0 0 0 0 0.13  0 0 0 0 0.09  0 0 0 0.035 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .corner{
+    position:absolute;
+    width:34px;
+    height:34px;
+    opacity:0.55;
+    pointer-events:none;
+  }
+  .corner svg{ width:100%; height:100%; display:block; }
+  .corner.tl{ top:14px; left:14px; }
+  .corner.tr{ top:14px; right:14px; transform:scaleX(-1); }
+
+  /* ---------- nav ---------- */
+
+  nav{
+    position:sticky;
+    top:0;
+    z-index:5;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:16px 30px;
+    background:rgba(247,241,228,0.86);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+
+  .nav-mark{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:19px;
+    color:var(--burgundy);
+    text-decoration:none;
+  }
+
+  .nav-links{
+    display:flex;
+    gap:22px;
+    font-size:13px;
+    color:var(--ink-soft);
+  }
+  .nav-links a{
+    color:inherit;
+    text-decoration:none;
+  }
+  .nav-links a:hover{ color:var(--burgundy); }
+
+  @media (max-width:480px){
+    .nav-links{ gap:14px; }
+    .nav-links span{ display:none; }
+  }
+
+  /* ---------- hero ---------- */
+
+  .hero{
+    padding:56px 34px 8px;
+    text-align:center;
+  }
 
   .seal{
-    width:132px;
-    height:132px;
-    margin:0 auto 28px;
-    border:5px double var(--gold);
+    position:relative;
+    width:118px;
+    height:118px;
+    margin:0 auto 26px;
+    border:4px double var(--gold);
     border-radius:50%;
     display:flex;
     align-items:center;
     justify-content:center;
     overflow:hidden;
-    font-family:'Cormorant Garamond', serif;
-    font-style:italic;
-    font-size:38px;
-    color:var(--gold);
+    background:var(--ivory);
     opacity:0;
     transform:scale(0.85);
-    animation:sealIn 900ms ease-out 150ms forwards;
+    animation:revealUp 700ms ease-out 100ms forwards;
   }
 
   .seal img{
     width:100%;
     height:100%;
     object-fit:cover;
+    display:block;
   }
 
-  @keyframes sealIn{
-    to{ opacity:1; transform:scale(1); }
+  .seal img.is-broken{ display:none; }
+
+  .seal-fallback{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:34px;
+    color:var(--gold);
+    display:none;
   }
+  .seal.no-photo .seal-fallback{ display:block; }
 
   .eyebrow{
-    text-align:center;
     font-size:13px;
-    letter-spacing:0.04em;
+    letter-spacing:0.03em;
     color:var(--ink-soft);
-    margin:0 0 6px;
+    margin:0 0 8px;
+    opacity:0;
+    animation:revealUp 650ms ease-out 320ms forwards;
   }
 
   h1{
     font-family:'Cormorant Garamond', serif;
     font-weight:500;
-    font-size:clamp(34px, 7vw, 46px);
-    line-height:1.1;
-    text-align:center;
-    margin:0 0 14px;
+    font-size:clamp(32px, 6.5vw, 44px);
+    line-height:1.12;
+    margin:0 0 16px;
     color:var(--ink);
+    opacity:0;
+    animation:revealUp 650ms ease-out 460ms forwards;
   }
 
   .tagline{
-    text-align:center;
-    font-size:16px;
-    line-height:1.6;
+    font-size:15.5px;
+    line-height:1.7;
     color:var(--ink-soft);
     max-width:420px;
-    margin:0 auto 44px;
+    margin:0 auto;
+    opacity:0;
+    animation:revealUp 650ms ease-out 600ms forwards;
   }
 
-  /* ---------- ornamental divider ---------- */
+  @keyframes revealUp{
+    from{ opacity:0; transform:translateY(10px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+  .seal{ transform:scale(0.85); }
+  @keyframes revealUp{
+    0%{ opacity:0; transform:translateY(10px) scale(0.98); }
+    100%{ opacity:1; transform:translateY(0) scale(1); }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .seal, .eyebrow, h1, .tagline{ animation:none; opacity:1; transform:none; }
+  }
+
+  /* ---------- divisor ornamental ---------- */
 
   .flourish{
     display:flex;
     align-items:center;
     gap:14px;
-    margin:44px 0;
+    margin:6px 34px 30px;
   }
   .flourish::before, .flourish::after{
     content:'';
@@ -120,6 +223,18 @@
     white-space:nowrap;
   }
 
+  section{ padding:0 34px 54px; }
+  section:last-of-type{ padding-bottom:44px; }
+
+  h2.section-title{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:500;
+    font-size:clamp(26px, 5vw, 32px);
+    text-align:center;
+    margin:0 0 30px;
+    color:var(--ink);
+  }
+
   /* ---------- servicios ---------- */
 
   .servicio{
@@ -127,173 +242,220 @@
     justify-content:space-between;
     align-items:baseline;
     gap:16px;
-    padding:20px 0;
+    padding:19px 0;
     border-bottom:1px solid var(--line);
     text-decoration:none;
     color:inherit;
   }
-  .servicio:first-of-type{ border-top:1px solid var(--line); }
+  .servicios-list .servicio:first-of-type{ border-top:1px solid var(--line); }
 
   .servicio-nombre{
     font-family:'Cormorant Garamond', serif;
     font-weight:500;
-    font-size:23px;
+    font-size:22px;
     color:var(--ink);
+    position:relative;
   }
+  .servicio-nombre::after{
+    content:'';
+    position:absolute;
+    left:0;
+    bottom:-4px;
+    width:0;
+    height:1px;
+    background:var(--burgundy);
+    transition:width 220ms ease;
+  }
+  .servicio:hover .servicio-nombre{ color:var(--burgundy); }
+  .servicio:hover .servicio-nombre::after{ width:100%; }
 
   .servicio-desc{
-    font-size:13.5px;
+    font-size:13px;
     color:var(--ink-soft);
     text-align:right;
     max-width:190px;
     line-height:1.5;
   }
 
-  .servicio:hover .servicio-nombre{
+  @media (max-width:460px){
+    .servicio{ flex-direction:column; gap:4px; }
+    .servicio-desc{ text-align:left; max-width:none; }
+  }
+
+  /* ---------- proceso (con hilo) ---------- */
+
+  .proceso{
+    position:relative;
+    padding-left:4px;
+  }
+
+  .paso{
+    position:relative;
+    display:flex;
+    gap:20px;
+    padding-bottom:34px;
+  }
+  .paso:last-child{ padding-bottom:0; }
+
+  .paso-hilo{
+    position:relative;
+    flex:0 0 auto;
+    width:30px;
+    display:flex;
+    justify-content:center;
+  }
+  .paso-hilo::before{
+    content:'';
+    position:absolute;
+    top:30px;
+    bottom:-34px;
+    width:1px;
+    background-image:repeating-linear-gradient(to bottom, var(--gold) 0 4px, transparent 4px 9px);
+  }
+  .paso:last-child .paso-hilo::before{ display:none; }
+
+  .paso-num{
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    border:1px solid var(--gold);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:15px;
     color:var(--burgundy);
-    transition:color 200ms ease;
+    background:var(--ivory);
+    flex-shrink:0;
+  }
+
+  .paso-texto h3{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:500;
+    font-size:19px;
+    margin:2px 0 6px;
+    color:var(--ink);
+  }
+  .paso-texto p{
+    font-size:13.5px;
+    line-height:1.6;
+    color:var(--ink-soft);
+    margin:0;
+    max-width:380px;
   }
 
   /* ---------- sobre nosotros ---------- */
 
-  .sobre{
-    font-size:15px;
-    line-height:1.75;
-    color:var(--ink-soft);
+  .sobre-wrap{
     text-align:center;
     max-width:460px;
     margin:0 auto;
   }
 
-  /* ---------- contacto ---------- */
+  .sobre-sello{
+    width:44px;
+    height:44px;
+    margin:0 auto 18px;
+    color:var(--gold);
+  }
+  .sobre-sello svg{ width:100%; height:100%; }
 
-  .contacto{
-    text-align:center;
+  .sobre-wrap p{
+    font-size:15px;
+    line-height:1.75;
+    color:var(--ink-soft);
+    margin:0;
   }
 
+  /* ---------- contacto ---------- */
+
+  .contacto{ text-align:center; }
+
   .btn{
-    display:inline-block;
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
     font-family:'Jost', sans-serif;
     font-weight:500;
     font-size:15px;
-    letter-spacing:0.01em;
     color:var(--ivory);
     background:var(--burgundy);
-    padding:15px 40px;
+    padding:15px 34px;
     border-radius:2px;
     text-decoration:none;
     transition:background 200ms ease;
   }
   .btn:hover{ background:var(--burgundy-deep); }
+  .btn svg{ width:16px; height:16px; flex-shrink:0; }
 
   .redes{
-    margin-top:26px;
+    margin-top:24px;
     display:flex;
     justify-content:center;
-    gap:26px;
-    font-size:14px;
+    gap:24px;
+    font-size:13.5px;
   }
   .redes a{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
     color:var(--ink-soft);
     text-decoration:none;
     border-bottom:1px solid var(--line);
     padding-bottom:2px;
   }
   .redes a:hover{ color:var(--burgundy); border-color:var(--burgundy); }
+  .redes svg{ width:14px; height:14px; }
 
-  .invitaciones{
-    margin-top:60px;
-  }
+  /* ---------- portafolio ---------- */
 
-  .invitaciones-header{
-    text-align:center;
-    margin-bottom:24px;
-  }
-
-  .invitaciones-header h2{
-    margin:0;
-    font-family:'Cormorant Garamond', serif;
-    font-weight:500;
-    font-size:clamp(30px, 6vw, 42px);
-    color:var(--ink);
-  }
-
-  .invitaciones-grid{
+  .portafolio-grid{
     display:grid;
-    gap:18px;
+    gap:16px;
   }
 
   .invitacion-card{
     display:block;
-    background:rgba(255,255,255,0.32);
+    background:var(--ivory);
     border:1px solid var(--line);
-    padding:10px;
-    box-shadow:0 12px 24px rgba(43,33,24,0.04);
-    color:inherit;
     text-decoration:none;
+    color:inherit;
+    box-shadow:0 10px 26px -14px var(--shadow);
   }
 
   .invitacion-preview{
     position:relative;
-    width:100%;
-    height:220px;
-    border:none;
-    background:linear-gradient(135deg, #f9f4ed, #efe3cb);
+    height:132px;
     display:flex;
-    align-items:flex-end;
-    justify-content:flex-end;
-    padding:16px;
-    overflow:hidden;
-  }
-
-  .invitacion-preview iframe{
-    position:absolute;
-    inset:0;
-    width:100%;
-    height:100%;
-    border:0;
-    background:#fff;
-    pointer-events:none;
-    transform:scale(1);
-    transform-origin:top left;
-  }
-
-  .invitacion-preview::before{
-    content:'';
-    position:absolute;
-    inset:0;
-    background:linear-gradient(135deg, rgba(122,46,56,0.12), rgba(173,138,78,0.08));
-  }
-
-  .invitacion-preview span{
-    position:relative;
-    z-index:1;
-    display:inline-flex;
     align-items:center;
     justify-content:center;
-    min-width:80px;
-    height:34px;
-    padding:0 16px;
-    border-radius:999px;
-    background:rgba(255,255,255,0.7);
-    border:1px solid rgba(43,33,24,0.08);
-    font-size:12px;
-    letter-spacing:0.06em;
-    text-transform:uppercase;
-    color:var(--ink);
-    backdrop-filter:blur(2px);
+    overflow:hidden;
   }
+  .invitacion-preview.tono-boda{ background:linear-gradient(135deg,#efe3d3,#dcc9ae); }
+  .invitacion-preview.tono-xv{ background:linear-gradient(135deg,#f1e2e2,#e3c3c8); }
+  .invitacion-preview.tono-baby{ background:linear-gradient(135deg,#e7ede4,#cddccd); }
+
+  .invitacion-motivo{
+    width:46px;
+    height:46px;
+    color:var(--ink);
+    opacity:0.55;
+  }
+  .invitacion-motivo svg{ width:100%; height:100%; }
 
   .invitacion-meta{
     display:flex;
     justify-content:space-between;
     align-items:center;
     gap:10px;
-    padding:14px 4px 6px;
+    padding:14px 16px 15px;
+    border-top:1px solid var(--line);
   }
 
   .invitacion-meta strong{
-    font-size:15px;
+    font-family:'Cormorant Garamond', serif;
+    font-size:16px;
     font-weight:500;
     color:var(--ink);
   }
@@ -303,125 +465,186 @@
     color:var(--burgundy);
     font-size:13px;
     border-bottom:1px solid transparent;
+    white-space:nowrap;
   }
-
-  .invitacion-card:hover .invitacion-meta em{
-    border-color:var(--burgundy);
-  }
+  .invitacion-card:hover .invitacion-meta em{ border-color:var(--burgundy); }
 
   footer{
-    margin-top:60px;
+    margin-top:0;
+    padding:22px 34px 30px;
     text-align:center;
     font-size:12px;
     color:var(--ink-soft);
-    opacity:0.7;
-  }
-
-  @media (max-width:420px){
-    .servicio{ flex-direction:column; gap:4px; }
-    .servicio-desc{ text-align:left; max-width:none; }
-  }
-
-  @media (prefers-reduced-motion: reduce){
-    .seal{ animation:none; opacity:1; transform:none; }
+    opacity:0.75;
+    border-top:1px solid var(--line);
   }
 </style>
 </head>
 <body>
 
-<div class="page">
+<div class="card">
+  <div class="corner tl"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1"><path d="M2 20 L2 2 L20 2" stroke="var(--gold)"/><path d="M2 30 L2 30" /></svg></div>
+  <div class="corner tr"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1"><path d="M2 20 L2 2 L20 2" stroke="var(--gold)"/></svg></div>
 
-  <div class="seal">
-    <img src="foto.jpeg" alt="Foto de Jesús Montero">
+  <nav>
+    <a class="nav-mark" href="#top">J. Montero</a>
+    <div class="nav-links">
+      <a href="#servicios">Servicios</a>
+      <a href="#proceso">Proceso</a>
+      <a href="#portafolio">Portafolio</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+  </nav>
+
+  <div class="hero" id="top">
+    <div class="seal">
+      <img src="foto.jpeg" alt="Foto de Jesús Montero"
+           onerror="this.classList.add('is-broken'); this.closest('.seal').classList.add('no-photo');">
+      <span class="seal-fallback">JM</span>
+    </div>
+    <p class="eyebrow">Jesús Montero</p>
+    <h1>Invitaciones digitales</h1>
+    <p class="tagline">Diseño experiencias web a la medida de cada celebración — bodas, XV años, baby showers, cumpleaños y eventos corporativos.</p>
   </div>
-  <p class="eyebrow">Jesús Montero</p>
-  <h1>Invitaciones digitales</h1>
-  <p class="tagline">Diseñamos experiencias web a la medida de cada celebración — bodas, XV años, baby showers, cumpleaños y eventos corporativos.</p>
 
   <div class="flourish"><span>servicios</span></div>
 
-  <!-- Reemplaza cada href por el enlace real de tu demo o plantilla -->
-  <a class="servicio" href="#" target="_blank" rel="noopener">
-    <span class="servicio-nombre">Bodas</span>
-    <span class="servicio-desc">Cuenta regresiva, RSVP, galería y mapa del evento</span>
-  </a>
-  <a class="servicio" href="#" target="_blank" rel="noopener">
-    <span class="servicio-nombre">XV años</span>
-    <span class="servicio-desc">Invitación animada con música y confirmación de asistencia</span>
-  </a>
-  <a class="servicio" href="#" target="_blank" rel="noopener">
-    <span class="servicio-nombre">Baby shower</span>
-    <span class="servicio-desc">Diseño tierno con lista de regalos y ubicación</span>
-  </a>
-  <a class="servicio" href="#" target="_blank" rel="noopener">
-    <span class="servicio-nombre">Cumpleaños infantil</span>
-    <span class="servicio-desc">Temática a elegir, colorida e interactiva</span>
-  </a>
-  <a class="servicio" href="#" target="_blank" rel="noopener">
-    <span class="servicio-nombre">Eventos corporativos</span>
-    <span class="servicio-desc">Registro de invitados y agenda del evento</span>
-  </a>
-
-  <div class="flourish"><span>sobre nosotros</span></div>
-
-  <p class="sobre">Nos dedicamos a crear invitaciones digitales que reemplazan al papel sin perder esa sensación especial de recibir algo hecho solo para ti.</p>
-
-  <div class="flourish"><span>contacto</span></div>
-
-  <div class="contacto">
-    <!-- Reemplaza el número por tu WhatsApp con lada de país, sin signos -->
-    <a class="btn" href="https://wa.me/524421363232?text=Hola%20Jes%C3%BAs%2C%20me%20interesa%20una%20invitaci%C3%B3n%20digital" target="_blank" rel="noopener">Cotizar mi invitación</a>
-    <div class="redes">
-      <a href="https://instagram.com/jesusmonttt" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://github.com/juanmonteroglez-commits" target="_blank" rel="noopener">GitHub</a>
-    </div>
-  </div>
-
-  <div class="flourish"><span>invitaciones</span></div>
-
-  <section class="invitaciones" aria-label="Invitaciones realizadas">
-    <div class="invitaciones-header">
-      <h2>Invitaciones realizadas</h2>
-    </div>
-
-    <div class="invitaciones-grid">
-      <a class="invitacion-card" href="https://juanmonteroglez-commits.github.io/nuevo-dise-o-invitacion-romina/" target="_blank" rel="noopener">
-        <div class="invitacion-preview" aria-label="Vista previa de la invitación de boda">
-          <iframe src="https://juanmonteroglez-commits.github.io/nuevo-dise-o-invitacion-romina/" title="Vista previa de la invitación de boda" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
-          <span>Abrir</span>
-        </div>
-        <div class="invitacion-meta">
-          <strong>Boda Fernando & Susana</strong>
-          <em>Ver</em>
-        </div>
+  <section id="servicios">
+    <div class="servicios-list">
+      <!-- Reemplaza cada href por el enlace real de tu demo o plantilla -->
+      <a class="servicio" href="#" target="_blank" rel="noopener">
+        <span class="servicio-nombre">Bodas</span>
+        <span class="servicio-desc">Cuenta regresiva, RSVP, galería y mapa del evento</span>
       </a>
-
-      <a class="invitacion-card" href="https://juanmonteroglez-commits.github.io/XV-Jessi/" target="_blank" rel="noopener">
-        <div class="invitacion-preview" aria-label="Vista previa de la invitación de XV años">
-          <iframe src="https://juanmonteroglez-commits.github.io/XV-Jessi/" title="Vista previa de la invitación de XV años" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
-          <span>Abrir</span>
-        </div>
-        <div class="invitacion-meta">
-          <strong>XV Años</strong>
-          <em>Ver</em>
-        </div>
+      <a class="servicio" href="#" target="_blank" rel="noopener">
+        <span class="servicio-nombre">XV años</span>
+        <span class="servicio-desc">Invitación animada con música y confirmación de asistencia</span>
       </a>
-
-      <a class="invitacion-card" href="https://juanmonteroglez-commits.github.io/Baby_Shower/" target="_blank" rel="noopener">
-        <div class="invitacion-preview" aria-label="Vista previa de la invitación de baby shower">
-          <iframe src="https://juanmonteroglez-commits.github.io/Baby_Shower/" title="Vista previa de la invitación de baby shower" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
-          <span>Abrir</span>
-        </div>
-        <div class="invitacion-meta">
-          <strong> Baby Shower </strong>
-          <em>Ver</em>
-        </div>
+      <a class="servicio" href="#" target="_blank" rel="noopener">
+        <span class="servicio-nombre">Baby shower</span>
+        <span class="servicio-desc">Diseño tierno con lista de regalos y ubicación</span>
+      </a>
+      <a class="servicio" href="#" target="_blank" rel="noopener">
+        <span class="servicio-nombre">Cumpleaños infantil</span>
+        <span class="servicio-desc">Temática a elegir, colorida e interactiva</span>
+      </a>
+      <a class="servicio" href="#" target="_blank" rel="noopener">
+        <span class="servicio-nombre">Eventos corporativos</span>
+        <span class="servicio-desc">Registro de invitados y agenda del evento</span>
       </a>
     </div>
   </section>
 
-  <footer>Hecho a mano, invitación por invitación.</footer>
+  <div class="flourish"><span>cómo trabajamos</span></div>
 
+  <section id="proceso">
+    <div class="proceso">
+      <div class="paso">
+        <div class="paso-hilo"><div class="paso-num">1</div></div>
+        <div class="paso-texto">
+          <h3>Cuéntame tu evento</h3>
+          <p>Me escribes por WhatsApp con la fecha, el estilo que imaginas y los datos que quieres incluir.</p>
+        </div>
+      </div>
+      <div class="paso">
+        <div class="paso-hilo"><div class="paso-num">2</div></div>
+        <div class="paso-texto">
+          <h3>Diseño tu invitación</h3>
+          <p>Preparo un boceto a la medida y ajustamos juntos colores, textos y detalles hasta que quede como la imaginaste.</p>
+        </div>
+      </div>
+      <div class="paso">
+        <div class="paso-hilo"><div class="paso-num">3</div></div>
+        <div class="paso-texto">
+          <h3>La compartes con tus invitados</h3>
+          <p>Te entrego un enlace listo para enviar por WhatsApp o redes — sin apps ni instalaciones de por medio.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="flourish"><span>sobre mí</span></div>
+
+  <section id="sobre">
+    <div class="sobre-wrap">
+      <div class="sobre-sello">
+        <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.2">
+          <circle cx="22" cy="22" r="19"/>
+          <circle cx="22" cy="22" r="13.5"/>
+          <path d="M22 12 L22 32 M12 22 L32 22" stroke-width="0.8"/>
+        </svg>
+      </div>
+      <p>Nos dedicamos a crear invitaciones digitales que reemplazan al papel sin perder esa sensación especial de recibir algo hecho solo para ti. Cada proyecto se diseña desde cero para el evento que lo pide.</p>
+    </div>
+  </section>
+
+  <div class="flourish"><span>contacto</span></div>
+
+  <section id="contacto">
+    <div class="contacto">
+      <!-- Reemplaza el número por tu WhatsApp con lada de país, sin signos -->
+      <a class="btn" href="https://wa.me/524421363232?text=Hola%20Jes%C3%BAs%2C%20me%20interesa%20una%20invitaci%C3%B3n%20digital" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-1-.3-.1-.5-.1-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-1.5-.7-2.5-1.3-3.5-3-.3-.4 0-.5.2-.7.2-.2.5-.5.7-.8.1-.2.1-.4 0-.6-.1-.2-.6-1.5-.8-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.4-.2.3-.9 1-.9 2.3 0 1.3 1 2.6 1.1 2.8 1.1 1.7 2.4 2.9 4.3 3.6.6.2 1 .3 1.4.2.4-.1 1.2-.5 1.4-1 .2-.4.2-.8.1-1z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.4 5.1L2 22l5.1-1.3c1.4.8 3.1 1.3 4.9 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3C4.4 15 4 13.5 4 12c0-4.4 3.6-8 8-8s8 3.6 8 8-3.6 8-8 8z"/></svg>
+        Cotizar mi invitación
+      </a>
+      <div class="redes">
+        <a href="https://instagram.com/jesusmonttt" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none"/></svg>
+          Instagram
+        </a>
+        <a href="https://github.com/juanmonteroglez-commits" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.16 19.5c.5.1.68-.22.68-.48v-1.7c-2.78.6-3.37-1.35-3.37-1.35-.46-1.15-1.11-1.46-1.11-1.46-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.33 1.08 2.9.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.95 0-1.1.39-1.99 1.03-2.7-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03a9.5 9.5 0 0 1 5 0c1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.71 1.03 1.6 1.03 2.7 0 3.85-2.35 4.7-4.58 4.94.36.32.68.94.68 1.9v2.82c0 .26.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="flourish"><span>invitaciones realizadas</span></div>
+
+  <section id="portafolio">
+    <div class="portafolio-grid">
+
+      <a class="invitacion-card" href="https://juanmonteroglez-commits.github.io/nuevo-dise-o-invitacion-romina/" target="_blank" rel="noopener">
+        <div class="invitacion-preview tono-boda">
+          <span class="invitacion-motivo">
+            <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M22 30c-6-4-10-8-10-13a6 6 0 0 1 10-4 6 6 0 0 1 10 4c0 5-4 9-10 13z"/><path d="M14 30h16M17 33h10" stroke-width="0.8"/></svg>
+          </span>
+        </div>
+        <div class="invitacion-meta">
+          <strong>Boda Fernando &amp; Susana</strong>
+          <em>Ver invitación</em>
+        </div>
+      </a>
+
+      <a class="invitacion-card" href="https://juanmonteroglez-commits.github.io/XV-Jessi/" target="_blank" rel="noopener">
+        <div class="invitacion-preview tono-xv">
+          <span class="invitacion-motivo">
+            <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M22 6l3.5 8 8.5 1-6.3 5.9 1.7 8.4L22 25l-7.4 4.3 1.7-8.4L10 15l8.5-1z"/></svg>
+          </span>
+        </div>
+        <div class="invitacion-meta">
+          <strong>XV años de Jessi</strong>
+          <em>Ver invitación</em>
+        </div>
+      </a>
+
+      <a class="invitacion-card" href="https://juanmonteroglez-commits.github.io/Baby_Shower/" target="_blank" rel="noopener">
+        <div class="invitacion-preview tono-baby">
+          <span class="invitacion-motivo">
+            <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M14 20c0-5 3.5-9 8-9s8 4 8 9" /><path d="M9 20h26v3a5 5 0 0 1-5 5H14a5 5 0 0 1-5-5v-3z"/><path d="M22 11V7"/></svg>
+          </span>
+        </div>
+        <div class="invitacion-meta">
+          <strong>Baby Shower</strong>
+          <em>Ver invitación</em>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <footer>Hecho a mano, invitación por invitación.</footer>
 </div>
 
 </body>
