@@ -469,63 +469,6 @@
   }
   .invitacion-card:hover .invitacion-meta em{ border-color:var(--burgundy); }
 
-  /* ---------- preguntas frecuentes ---------- */
-
-  .faq-section{
-    padding:0 34px 34px;
-  }
-
-  .faq-item{
-    border-bottom:1px solid var(--line);
-  }
-  .faq-item:first-child{ border-top:1px solid var(--line); }
-
-  .faq-item summary{
-    display:flex;
-    min-height:62px;
-    align-items:center;
-    justify-content:space-between;
-    gap:18px;
-    padding:14px 4px;
-    color:var(--ink);
-    cursor:pointer;
-    list-style:none;
-    font-family:'Cormorant Garamond', serif;
-    font-size:20px;
-    font-weight:500;
-    line-height:1.25;
-  }
-  .faq-item summary::-webkit-details-marker{ display:none; }
-  .faq-item summary::after{
-    content:'+';
-    flex:0 0 24px;
-    color:var(--burgundy);
-    font-family:'Jost', sans-serif;
-    font-size:23px;
-    font-weight:300;
-    line-height:1;
-    text-align:center;
-  }
-  .faq-item[open] summary::after{ content:'−'; }
-  .faq-item summary:focus-visible{
-    outline:2px solid var(--burgundy);
-    outline-offset:3px;
-  }
-
-  .faq-answer{
-    max-width:520px;
-    padding:0 36px 20px 4px;
-    color:var(--ink-soft);
-    font-size:14px;
-    line-height:1.7;
-  }
-
-  @media (max-width:520px){
-    .faq-section{ padding-right:22px; padding-left:22px; }
-    .faq-item summary{ gap:12px; font-size:19px; }
-    .faq-answer{ padding-right:28px; }
-  }
-
   footer{
     margin-top:0;
     padding:22px 34px 30px;
@@ -725,34 +668,11 @@
     </div>
   </section>
 
-  <div class="flourish"><span role="heading" aria-level="2">preguntas frecuentes</span></div>
-
-  <section class="faq-section" aria-label="Preguntas frecuentes">
-    <details class="faq-item" open>
-      <summary>¿La invitación se hace desde cero?</summary>
-      <div class="faq-answer">Sí. Diseño cada proyecto desde cero y ajustamos juntos colores, textos y detalles.</div>
-    </details>
-    <details class="faq-item">
-      <summary>¿Para qué eventos haces invitaciones?</summary>
-      <div class="faq-answer">Para bodas, XV años, baby showers, cumpleaños infantiles y eventos corporativos.</div>
-    </details>
-    <details class="faq-item">
-      <summary>¿Cómo recibo y comparto la invitación?</summary>
-      <div class="faq-answer">Te entrego un enlace listo para compartir por WhatsApp o redes. Tus invitados no necesitan instalar una app.</div>
-    </details>
-    <details class="faq-item">
-      <summary>¿Qué te envío para empezar?</summary>
-      <div class="faq-answer">Escríbeme por WhatsApp con la fecha, el estilo que imaginas y los datos que quieres incluir.</div>
-    </details>
-  </section>
-
-  <div class="flourish"><span>hasta pronto</span></div>
-
   <section id="despedida">
-    <h2 class="section-title">Gracias por elegirnos</h2>
-    <p class="tagline">Le agradecemos por confiar en nosotros para crear su invitación especial. Esperamos que su evento sea un éxito y que todos disfruten de la celebración.</p>
-    <p class="tagline">Si necesita más ayuda o tiene alguna pregunta, no dude en contactarnos.</p>
-    <p class="tagline">¡Que tenga un buen día!</p>
+    <h2 class="section-title">¿Listo para tu invitación?</h2>
+    <div class="contacto">
+      <a class="btn" href="https://wa.me/524421363232?text=Hola%20Jes%C3%BAs%2C%20me%20interesa%20una%20invitaci%C3%B3n%20digital" target="_blank" rel="noopener">Escríbeme</a>
+    </div>
   </section>
 
   <footer>Hecho a mano, invitación por invitación.</footer>
